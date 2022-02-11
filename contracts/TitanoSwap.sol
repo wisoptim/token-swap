@@ -1,12 +1,8 @@
-/**
- *Submitted for verification at BscScan.com on 2022-01-13
-*/
-
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.4;
 
-abstract contract Context {
+ abstract contract Context {
     function _msgSender() internal view virtual returns (address payable) {
         return payable(msg.sender);
     }
@@ -15,7 +11,7 @@ abstract contract Context {
         this;
         return msg.data;
     }
-}
+} 
 
 abstract contract Ownable is Context {
     address private _owner;
@@ -78,7 +74,7 @@ abstract contract ReentrancyGuard {
     }
 }
 
-interface IERC20 {
+ interface IERC20 {
     function totalSupply() external view returns (uint);
 
     function balanceOf(address account) external view returns (uint);
@@ -305,88 +301,88 @@ library Address {
     }
 }
 
-library SafeERC20 {
-    using Address for address;
+// library SafeERC20 {
+//     using Address for address;
 
-    function safeTransfer(
-        IERC20 token,
-        address to,
-        uint256 value
-    ) internal {
-        _callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
-    }
+//     function safeTransfer(
+//         IERC20 token,
+//         address to,
+//         uint256 value
+//     ) internal {
+//         _callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
+//     }
 
-    function safeTransferFrom(
-        IERC20 token,
-        address from,
-        address to,
-        uint256 value
-    ) internal {
-        _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));
-    }
+//     function safeTransferFrom(
+//         IERC20 token,
+//         address from,
+//         address to,
+//         uint256 value
+//     ) internal {
+//         _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));
+//     }
 
-    /**
-     * @dev Deprecated. This function has issues similar to the ones found in
-     * {IERC20-approve}, and its usage is discouraged.
-     *
-     * Whenever possible, use {safeIncreaseAllowance} and
-     * {safeDecreaseAllowance} instead.
-     */
-    function safeApprove(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
-        // safeApprove should only be called when setting an initial allowance,
-        // or when resetting it to zero. To increase and decrease it, use
-        // 'safeIncreaseAllowance' and 'safeDecreaseAllowance'
-        require(
-            (value == 0) || (token.allowance(address(this), spender) == 0),
-            "SafeERC20: approve from non-zero to non-zero allowance"
-        );
-        _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, value));
-    }
+//     /**
+//      * @dev Deprecated. This function has issues similar to the ones found in
+//      * {IERC20-approve}, and its usage is discouraged.
+//      *
+//      * Whenever possible, use {safeIncreaseAllowance} and
+//      * {safeDecreaseAllowance} instead.
+//      */
+//     function safeApprove(
+//         IERC20 token,
+//         address spender,
+//         uint256 value
+//     ) internal {
+//         // safeApprove should only be called when setting an initial allowance,
+//         // or when resetting it to zero. To increase and decrease it, use
+//         // 'safeIncreaseAllowance' and 'safeDecreaseAllowance'
+//         require(
+//             (value == 0) || (token.allowance(address(this), spender) == 0),
+//             "SafeERC20: approve from non-zero to non-zero allowance"
+//         );
+//         _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, value));
+//     }
 
-    function safeIncreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
-        uint256 newAllowance = token.allowance(address(this), spender) + value;
-        _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
-    }
+//     function safeIncreaseAllowance(
+//         IERC20 token,
+//         address spender,
+//         uint256 value
+//     ) internal {
+//         uint256 newAllowance = token.allowance(address(this), spender) + value;
+//         _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
+//     }
 
-    function safeDecreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
-    unchecked {
-        uint256 oldAllowance = token.allowance(address(this), spender);
-        require(oldAllowance >= value, "SafeERC20: decreased allowance below zero");
-        uint256 newAllowance = oldAllowance - value;
-        _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
-    }
-    }
+//     function safeDecreaseAllowance(
+//         IERC20 token,
+//         address spender,
+//         uint256 value
+//     ) internal {
+//     unchecked {
+//         uint256 oldAllowance = token.allowance(address(this), spender);
+//         require(oldAllowance >= value, "SafeERC20: decreased allowance below zero");
+//         uint256 newAllowance = oldAllowance - value;
+//         _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
+//     }
+//     }
 
-    /**
-     * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement
-     * on the return value: the return value is optional (but if data is returned, it must not be false).
-     * @param token The token targeted by the call.
-     * @param data The call data (encoded using abi.encode or one of its variants).
-     */
-    function _callOptionalReturn(IERC20 token, bytes memory data) private {
-        // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
-        // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
-        // the target address contains contract code and also asserts for success in the low-level call.
+//     /**
+//      * @dev Imitates a Solidity high-level call (i.e. a regular function call to a contract), relaxing the requirement
+//      * on the return value: the return value is optional (but if data is returned, it must not be false).
+//      * @param token The token targeted by the call.
+//      * @param data The call data (encoded using abi.encode or one of its variants).
+//      */
+//     function _callOptionalReturn(IERC20 token, bytes memory data) private {
+//         // We need to perform a low level call here, to bypass Solidity's return data size checking mechanism, since
+//         // we're implementing it ourselves. We use {Address.functionCall} to perform this call, which verifies that
+//         // the target address contains contract code and also asserts for success in the low-level call.
 
-        bytes memory returndata = address(token).functionCall(data, "SafeERC20: low-level call failed");
-        if (returndata.length > 0) {
-            // Return data is optional
-            require(abi.decode(returndata, (bool)), "SafeERC20: ERC20 operation did not succeed");
-        }
-    }
-}
+//         bytes memory returndata = address(token).functionCall(data, "SafeERC20: low-level call failed");
+//         if (returndata.length > 0) {
+//             // Return data is optional
+//             require(abi.decode(returndata, (bool)), "SafeERC20: ERC20 operation did not succeed");
+//         }
+//     }
+// }
 
 library SafeMath {
     function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {
@@ -464,16 +460,15 @@ library SafeMath {
     }
 }
 
-contract TitanSwap is Ownable, ReentrancyGuard {
+contract TitanoSwap is Ownable, ReentrancyGuard {
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
+   // using SafeERC20 for IERC20;
 
     address public tokenIn = 0x580dE58c1BD593A43DaDcF0A739d504621817c05;
     address public tokenOut = 0x14988b19661587dC09F72D891b0117E5D9327C01;
 
     bool public isSwapStarted = false;
 
-    uint256 public swapRate = 100000;
 
     constructor() ReentrancyGuard() {
     }
@@ -481,14 +476,14 @@ contract TitanSwap is Ownable, ReentrancyGuard {
     function swap(uint256 inAmount) external nonReentrant {
         uint256 quota = IERC20(tokenOut).balanceOf(address(this));
         uint256 total = IERC20(tokenIn).balanceOf(msg.sender);
-        uint256 outAmount = inAmount.mul(1000).div(swapRate);
+        uint256 outAmount = inAmount;
 
-        require(isSwapStarted == true, 'ThoreumSwap:: Swap not started.');
-        require(inAmount <= total, "ThoreumSwap:: Insufficient fund.");
-        require(outAmount <= quota, "ThoreumSwap:: Quota not enough.");
+        require(isSwapStarted == true, 'TitanoSwap:: Swap not started.');
+        require(inAmount <= total, "TitanoSwap:: Insufficient fund.");
+        require(outAmount <= quota, "TitanoSwap:: Quota not enough.");
 
-        IERC20(tokenIn).safeTransferFrom(msg.sender, address(this), inAmount);
-        IERC20(tokenOut).safeTransfer(msg.sender, outAmount);
+        IERC20(tokenIn).transferFrom(msg.sender, address(this), inAmount);
+        IERC20(tokenOut).transfer(msg.sender, outAmount);
 
         emit Swap(msg.sender, inAmount, outAmount);
     }
@@ -498,17 +493,13 @@ contract TitanSwap is Ownable, ReentrancyGuard {
         isSwapStarted = _status;
     }
 
-    function setSwapRate(uint256 newRate) external onlyOwner {
-        swapRate = newRate;
-    }
-
     function setTokens(address _tokenIn, address _tokenOut) external onlyOwner {
         tokenIn = _tokenIn;
         tokenOut = _tokenOut;
     }
 
     function recoverWrongTokens(address _tokenAddress, uint256 _tokenAmount) external onlyOwner {
-        IERC20(_tokenAddress).safeTransfer(address(msg.sender), _tokenAmount);
+        IERC20(_tokenAddress).transfer(address(msg.sender), _tokenAmount);
         emit AdminTokenRecovery(_tokenAddress, _tokenAmount);
     }
 
