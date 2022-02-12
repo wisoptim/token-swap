@@ -14,3 +14,5 @@ npx hardhat verify --network bscmainnet 0x85a201495902f3D439763Ab8430f117acEf4d3
 
 2. Allow swapping:
 `setIsSwapStarted(true);`
+
+3. Transfer some funds of Token 2 to the swap contract. This is required to allow the swap contract transfer Token 2 to user in exchange to Token 1 with 1:1 ration
